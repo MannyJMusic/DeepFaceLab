@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-conda activate deepfacelab
+# conda activate deepfacelab
 cd ..
 export DFL_PYTHON="python3.7"
 export DFL_WORKSPACE="workspace/"
