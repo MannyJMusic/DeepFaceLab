@@ -2,7 +2,7 @@
 # conda activate deepfacelab
 
 export DFL_PYTHON="python3.7"
-export DFL_WORKSPACE="workspace/"
+export DFL_WORKSPACE="$DEEPFACELAB_WORKSPACE"
 
 if [ ! -d "$DFL_WORKSPACE" ]; then
     mkdir "$DFL_WORKSPACE"
