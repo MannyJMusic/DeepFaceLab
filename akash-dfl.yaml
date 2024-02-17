@@ -1,0 +1,67 @@
+---
+version: "2.0"
+
+services:
+  deepfacelab:
+    image: ubuntu:latest
+    params:
+      storage:
+        data:
+          mount: usr/local/deepfacelab/workspace
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'apt-get update --fix-missing;
+         apt-get upgrade -y ;
+         apt-get install -y xfce4 xfce4-goodies tightvncserver ;
+         apt-get install -y openssh-server ;
+         echo "root:sAs3*z2p!" | chpasswd ;
+         echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config ;
+         echo "PermitRootLogin yes" >> /etc/ssh/sshd_config ;
+         service ssh restart ;
+         sleep infinity'
+
+    expose:
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+      - port: 22
+        as: 22
+        to:
+          - global: true
+profiles:
+  compute:
+    deepfacelab:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 32Gi
+        storage:
+          - size: 50Gi
+          - name: workspace
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta2
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+  placement:
+    akash:
+      attributes:
+
+      pricing:
+        deepfacelab:
+          denom: uakt
+          amount: 100000
+deployment:
+  deepfacelab:
+    akash:
+      profile: deepfacelab
+      count: 1
