@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# conda activate deepfacelab
-
+#conda activate deepfacelab
+cd ..
 export DFL_PYTHON="python3.7"
-export DFL_WORKSPACE="$DEEPFACELAB_WORKSPACE"
+export DFL_WORKSPACE="workspace/"
 
 if [ ! -d "$DFL_WORKSPACE" ]; then
     mkdir "$DFL_WORKSPACE"
@@ -15,5 +15,5 @@ if [ ! -d "$DFL_WORKSPACE" ]; then
     mkdir "$DFL_WORKSPACE/model"
 fi
 
-export DFL_ROOT="$DEEPFACELAB_PATH"
-export DFL_SRC="$DEEPFACELAB_PATH"
+export DFL_ROOT="./"
+export DFL_SRC="./DeepFaceLab"
